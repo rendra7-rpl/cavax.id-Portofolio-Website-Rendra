@@ -337,7 +337,8 @@ p {
   margin-bottom: 5px;
 }
 /* Certificate Section */
-.certificate-section {
+ /* Gaya tambahan yang Anda berikan */
+ .certificate-section {
   padding: 60px 20px;
   max-width: 1200px;
   margin: 0 auto;
@@ -350,6 +351,7 @@ p {
   color: #fff;
 }
 
+/* Gaya yang sudah ada */
 .certificate-section p {
   font-size: 1.2rem;
   color: #bbb;
@@ -357,11 +359,11 @@ p {
 }
 
 .certificate-grid {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
   justify-content: center;
   align-items: center;
-  gap: 20px;
-  margin-top: 20px;
 }
 
 .certificate-item {
@@ -369,8 +371,6 @@ p {
   border-radius: 10px;
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  max-width: 400px; /* Lebar maksimal untuk sertifikat */
-  width: 100%;
 }
 
 .certificate-item:hover {
@@ -388,29 +388,29 @@ p {
 /* Responsive Styles */
 @media (max-width: 768px) {
   .certificate-section h1 {
-    font-size: 2rem;
+      font-size: 2rem;
   }
 
   .certificate-section p {
-    font-size: 1rem;
+      font-size: 1rem;
   }
 
-  .certificate-item {
-    max-width: 300px; /* Lebar maksimal lebih kecil untuk tablet */
+  .certificate-grid {
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   }
 }
 
 @media (max-width: 480px) {
   .certificate-section h1 {
-    font-size: 1.5rem;
+      font-size: 1.5rem;
   }
 
   .certificate-section p {
-    font-size: 0.9rem;
+      font-size: 0.9rem;
   }
 
-  .certificate-item {
-    max-width: 250px; /* Lebar maksimal lebih kecil untuk mobile */
+  .certificate-grid {
+      grid-template-columns: 1fr;
   }
 }
 
