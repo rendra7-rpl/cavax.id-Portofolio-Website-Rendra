@@ -1,390 +1,226 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ren - Portfolio Project</title>
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-    <style>
-        body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #121212;
-    color: #fff;
-    position: relative;
-    box-sizing: border-box;
-    overflow: hidden;
-}
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-/* Efek Bintang */
-.stars {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: transparent;
-    z-index: -2;
-}
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <!-- my css -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/jarallax.css">
 
-.stars::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(circle, transparent 20%, #121212 80%);
-    z-index: 1;
-}
-
-.stars::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(circle, transparent 20%, #121212 80%);
-    z-index: 1;
-    animation: twinkle 5s infinite;
-}
-
-@keyframes twinkle {
-    0%, 100% {
-        opacity: 0.5;
-    }
-    50% {
-        opacity: 1;
-    }
-}
-
-/* Membuat bintang-bintang kecil */
-.stars span {
-    position: absolute;
-    background: white;
-    border-radius: 50%;
-    box-shadow: 0 0 5px white, 0 0 10px white, 0 0 20px white;
-    animation: blink 2s infinite;
-}
-
-@keyframes blink {
-    0%, 100% {
-        opacity: 0.5;
-    }
-    50% {
-        opacity: 1;
-    }
-}
-
-/* Generate bintang secara acak */
-.stars span {
-    width: 2px;
-    height: 2px;
-    top: calc(100% * var(--y));
-    left: calc(100% * var(--x));
-    animation-delay: calc(var(--delay) * 1s);
-}
-
-/* Widget dan konten lainnya */
-.background-widget,
-.background-widget-2,
-.background-widget-3 {
-    position: absolute;
-    background: radial-gradient(circle, rgba(50,50,50,0.9) 20%, rgba(18,18,18,0) 80%);
-    border-radius: 50%;
-    z-index: -1;
-}
-
-.background-widget {
-    top: 10%;
-    left: 80%;
-    width: 150px;
-    height: 150px;
-}
-
-.background-widget-2 {
-    top: 70%;
-    left: 10%;
-    width: 120px;
-    height: 120px;
-    opacity: 0.8;
-}
-
-.background-widget-3 {
-    top: 20%;
-    left: 20%;
-    width: 100px;
-    height: 100px;
-    opacity: 0.6;
-}
-
-.hero-bg-img {
-    text-align: center;
-    max-width: 800px;
-    padding: 20px;
-    position: relative;
-    z-index: 1;
-}
-
-h1 {
-    font-size: 3rem;
-    margin-bottom: 10px;
-    color: #fff;
-}
-
-.gradient-hero-text {
-    color: #ccc;
-}
-
-p {
-    font-size: 1.2rem;
-    color: #bbb;
-    margin-bottom: 20px;
-}
-
-.social-icons {
-    font-size: 1.5rem;
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    margin-bottom: 20px;
-}
-
-.social-icons i {
-    color: #888;
-}
-
-.buttons {
-    display: flex;
-    gap: 20px;
-    justify-content: center;
-}
-
-/* Style untuk tombol */
-.elementor-button {
-    position: relative;
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #1e1e1e;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 5px;
-    overflow: hidden;
-    transition: background-color 0.3s ease;
-}
-
-.elementor-button:hover {
-    background-color: #444;
-}
-
-/* Style untuk animasi garis */
-.line-animation {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background-color: #fff;
-    transition: width 0.5s ease;
-}
-
-/* Animasi saat tombol dihover */
-#my-works-button:hover .line-animation {
-    width: 100%;
-}
-
-/* Animasi saat tombol diklik */
-@keyframes fillLine {
-    0% {
-        width: 0;
-    }
-    100% {
-        width: 100%;
-    }
-}
-
-.clicked .line-animation {
-    animation: fillLine 0.5s forwards;
-}
-
-.my-works {
-    background: #444;
-    color: #fff;
-    transition: background-color 0.3s ease;
-}
-
-.my-works:hover {
-    background-color: #222;
-}
-
-.download-cv {
-    background: #222;
-    color: #fff;
-    transition: background-color 0.3s ease;
-}
-
-.download-cv:hover {
-    background: #444;
-    color: #222;
-}
-/* Loading Screen */
-.loading-screen {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(18, 18, 18, 0.9); /* Background gelap dengan transparansi */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    z-index: 1000; /* Pastikan di atas semua elemen */
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.5s ease, visibility 0.5s ease;
-}
-
-.loading-screen.active {
-    opacity: 1;
-    visibility: visible;
-}
-
-/* Animasi Loading */
-.loader {
-    border: 4px solid #f3f3f3; /* Warna lingkaran luar */
-    border-top: 4px solid #ff7e5f; /* Warna lingkaran atas (untuk animasi) */
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    animation: spin 1s linear infinite; /* Animasi putar */
-}
-
-@keyframes spin {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
-}
-
-.loading-screen p {
-    margin-top: 20px;
-    font-size: 1.2rem;
-    color: #fff;
-}
-/* Responsive Styles */
-@media (max-width: 768px) {
-    h1 {
-        font-size: 2rem;
-    }
-
-    p {
-        font-size: 1rem;
-    }
-
-    .social-icons {
-        font-size: 1.2rem;
-    }
-
-    .elementor-button {
-        padding: 8px 16px;
-        font-size: 0.9rem;
-    }
-
-    .background-widget {
-        top: 15%;
-        left: 70%;
-        width: 100px;
-        height: 100px;
-    }
-
-    .background-widget-2 {
-        top: 80%;
-        left: 5%;
-        width: 80px;
-        height: 80px;
-    }
-
-    .background-widget-3 {
-        top: 25%;
-        left: 15%;
-        width: 70px;
-        height: 70px;
-    }
-}
-
-@media (max-width: 480px) {
-    h1 {
-        font-size: 1.5rem;
-    }
-
-    p {
-        font-size: 0.9rem;
-    }
-
-    .social-icons {
-        font-size: 1rem;
-    }
-
-    .elementor-button {
-        padding: 6px 12px;
-        font-size: 0.8rem;
-    }
-
-    .background-widget {
-        top: 20%;
-        left: 60%;
-        width: 80px;
-        height: 80px;
-    }
-
-    .background-widget-2 {
-        top: 85%;
-        left: 3%;
-        width: 60px;
-        height: 60px;
-    }
-
-    .background-widget-3 {
-        top: 30%;
-        left: 10%;
-        width: 50px;
-        height: 50px;
-    }
-    
-}
-    </style>
-</head>
-<body>
-    <div class="stars"></div> <!-- Efek bintang -->
-    <div class="background-widget"></div>
-    <div class="background-widget-2"></div>
-    <div class="background-widget-3"></div>
-    <section class="hero-bg-img">
-        <p style="color:#888;">✨ This is Rendra</p>
-        <h1>UI / UX and <span class="gradient-hero-text">Web Developer.</span></h1>
-        <p>With 6+ months of experience</p>
-        <div class="buttons">
-            <a class="elementor-button my-works" href="Portofolio.html" id="my-works-button">
-                My Works >
-                <span class="line-animation"></span> <!-- Elemen untuk animasi garis -->
-            </a>
-            <a class="elementor-button download-cv" href="CV I_Gede_Rendra_Pratama (2).pdf" download="CV I_Gede_Rendra_Pratama (2).pdf">Download CV</a>
+    <title>cavax.id - Portofolio Website Rendra</title>
+    <link rel="shortcut icon" type="image/jpg" href="assets/icon/iconvax.png"/>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+      <div class="container">
+        <!-- Brand -->
+        <a class="navbar-brand" href="https://gustibagusbayu.github.io/"><img class="logopad" src="assets/icon/logovax.png" alt="logo"></a>
+      
+        <!-- Toggler/collapsibe Button -->
+        <div class="navbar-toggler collapsed" data-toggle="collapse" data-target="#collapsibleNavbar">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
         </div>
-    </section>
+        <!-- Navbar links -->
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="#home">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#project">Projects</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#skills">Skills</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#certificate">Certificate</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#contact">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- Navbar End -->
 
-    <div id="loading-screen" class="loading-screen">
-        <div class="loader"></div> <!-- Animasi loading -->
-        <p>Loading...</p>
-    </div>
-    <script src="LandingPage.js"></script>
-</body>
+    <!-- Home Page Section -->
+    <section class="home" id="home">
+      <div class="container">
+        <div class="row d-flex align-items-center">
+          <div class="col-md-5">
+            <div class="home_photo text-center">
+              <img src="assets/images/photo.png" alt="photo">
+              <div class="circle"></div>
+            </div>
+          </div>
+          <div class="col-md-7">
+            <div class="home_intro">
+              <h2>Hi, i'm I Gede Rendra Pratama</h2>
+              <h1>UI Designer & Junior Fullstack Developer</h1>
+              <p>I'm from Bali and I started learning programming in 2023. I'm also passionate about design. If you want to ask something about me, just contact me on my social media below.</p>
+              <div class="home_social">
+                <a href="https://www.instagram.com/gderendraxy97_/"><img src="assets/icon/instagram.svg" alt="instagram"></a>
+                <a href="https://www.linkedin.com/in/i-gede-rendra-pratama-828721353/"><img src="assets/icon/linkedin.svg" alt="linkedin"></a>
+                <a href="https://github.com/rendra7-rpl"><img src="assets/icon/github.svg" alt="github"></a>
+                <a href="https://www.youtube.com/@renpratama-x5o"><img src="assets/icon/youtube.svg" alt="youtube"></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- End Home Page Section -->
+
+    <!-- Project Section -->
+    <section class="project" id="project">
+      <div class="container">
+        <div class="row">
+          <h1>Selected Projects</h1>
+          <div class="line"></div>
+          <div class="foodApp">
+            <img src="assets/images/Mobile Apps Kedai.jpg" alt="food app">
+            <img class="component1" data-jarallax-element="100 250" src="assets/components/mobile_app_design.svg" alt="mobile app design">
+          </div>
+          <div class="furniture">
+            <img src="assets/images/travel web.png" alt="furniture">
+            <a target="_blank" href="https://giliwanders.com/"><p>See <br>Web Pages</p></a>
+            <img class="component2" data-jarallax-element="-100 -250" src="assets/components/mobile_app_design.svg" alt="mobile app design">
+          </div>
+          <div class="expertSystem">
+            <img src="assets/images/laravel backoffice.png" alt="expert system">
+            <div class="description1"></div>
+            <p>Build expert<br>system website<br>with laravel<br>and tailwind.<br>-soon</p>
+            <img class="component3" data-jarallax-element="100 150" src="assets/components/web_programming.svg" alt="web programming">
+          </div>
+          <div class="machineLearning">
+            <img src="assets/images/image.png" alt="machine learning">
+            <div class="description2"></div>
+            <p>Build machine<br>learning website<br>with python<br>(Classification &<br>Clustering)-soon.</p>
+            <img class="component4" data-jarallax-element="-100 -150" src="assets/components/web_programming.svg" alt="web programming">
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- End Project Section -->
+
+    <!-- Tools and Skills section -->
+    <section class="skills" id="skills">
+      <div class="container">
+        <div class="row">
+          <h1>Tools & Skills</h1>
+          <div class="line"></div>
+          <div class="programming text-center">
+            <img src="assets/icon/html.svg" alt="html">
+            <img src="assets/icon/css.svg" alt="css">
+            <img src="assets/icon/javascript.svg" alt="javascript">
+            <img src="assets/icon/python.svg" alt="python">
+            <img src="assets/icon/laravel.svg" alt="laravel">
+            <img src="assets/icon/react.svg" alt="reactjs">
+            <img src="assets/icon/bootstrap.svg" alt="bootstrap">
+            <img src="assets/icon/tailwind.svg" alt="tailwind">
+            <img src="assets/icon/golang.svg" alt="golang">
+            <img class="mysql" src="assets/icon/mysql.svg" alt="mysql">
+          </div>
+          <div class="design text-center">
+            <img src="assets/icon/photoshop.svg" alt="photoshop">
+            <img src="assets/icon/canva.svg" alt="canva">
+            <img class="figma" src="assets/icon/figma.svg" alt="figma">
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- End Tools and Skills section -->
+
+    <!-- Certificate Section -->
+    <section class="certificate" id="certificate">
+      <div class="container">
+        <div class="row">
+          <h1>Certificate</h1>
+          <div class="line"></div>
+          <div class="certificate-grid">
+            <div class="certificate-row">
+              <div class="certificate-item">
+                <img src="assets/images/sertifikat front end.png" alt="Front End Certificate">
+                <p>Front End Development</p>
+              </div>
+              <div class="certificate-item">
+                <img src="assets/images/sertifikat back end.png" alt="Back End Certificate">
+                <p>Back End Development</p>
+              </div>
+              <div class="certificate-item">
+                <img src="assets/images/sertifikat uiux.jpg" alt="UI/UX Certificate">
+                <p>UI/UX Design</p>
+              </div>
+              <div class="certificate-item">
+                <img src="assets/images/sertifikat kodemaker.png" alt="KodeMaker Certificate">
+                <p>KodeMaker</p>
+              </div>
+            </div>
+            <div class="certificate-row">
+              <div class="certificate-item">
+                <img src="assets/images/sertifikat dicoding python.jpg" alt="Python Certificate">
+                <p>Python Programming</p>
+              </div>
+              <div class="certificate-item">
+                <img src="assets/images/sertifikat dicoding ai pemula.jpg" alt="AI Pemula Certificate">
+                <p>Belajar Dasar AI</p>
+              </div>
+              <div class="certificate-item">
+                <img src="assets/images/seminar.png" alt="Seminar Certificate">
+                <p>Webinar</p>
+              </div>
+              <div class="certificate-item empty"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- End Certificate Section -->
+
+    <!-- Get In Touch Section -->
+    <section class="contact" id="contact">
+      <div class="container">
+        <div class="row">
+          <h1>Get in touch</h1>
+          <div class="line"></div>
+          <p class="desc">For <span>hiring</span>, <span>business</span>, or <span>collaboration</span> please contact me via email <span>aboutrendra917@gmail.com</span> or <span><a href="https://www.linkedin.com/in/i-gede-rendra-pratama-828721353/">Linkedin.</a></span></p>
+          <div class="contact_social">
+            <a href="https://www.instagram.com/gderendraxy97_/"><img src="assets/icon/instagram.svg" alt="instagram"></a>
+            <a href="https://www.linkedin.com/in/i-gede-rendra-pratama-828721353/"><img src="assets/icon/linkedin.svg" alt="linkedin"></a>
+            <a href="https://github.com/rendra7-rpl"><img src="assets/icon/github.svg" alt="github"></a>
+            <a href="https://www.youtube.com/@renpratama-x5o"><img src="assets/icon/youtube.svg" alt="youtube"></a>
+            <img class="signed_logo" src="assets/icon/iconvax.png" alt="logo sign">
+          </div>
+          <div class="copyright">
+            <p>Creative Visionary Allianxce &#169; 2025</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- End Get In Touch Section -->
+
+    <!-- Scripts -->
+    <!-- gsap -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/ScrollTrigger.min.js"></script>
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/jarallax.js"></script>
+    <script src="js/jarallax-element.js"></script>
+    <!-- End Scripts -->
+
+  </body>
 </html>
